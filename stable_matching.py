@@ -26,7 +26,7 @@ def stableMatching(n, menPreferences, womenPreferences):
        currentHusband = womanSpouse[she]        
       
        # Write your code here
-      
+
        # Now "he" proposes to "she".
        # Decide whether "she" accepts, and update the following fields
        # 1. manSpouse
@@ -34,7 +34,9 @@ def stableMatching(n, menPreferences, womenPreferences):
        # 3. unmarriedMen
        # 4. nextManChoice
        if currentHusband is not None:
-           if herPreferences[currentHusband] < herPreferences[he]:
+           currentHusbandIndex = herPreferences.index(currentHusband)
+           heIndex = herPreferences.index(he)
+           if currentHusbandIndex > heIndex:
                womanSpouse[she] = he
                manSpouse[he] = she
                unmarriedMen.pop(0)
@@ -49,21 +51,18 @@ def stableMatching(n, menPreferences, womenPreferences):
    return manSpouse
 
 
-# MenPreferences armazena a preferência de cada homen em uma lista, onde o índice da lista indica a preferência de cada homen
-# ou seja, menPreferences[0][0] > menPreferences[0][1] > .... > menPreferences[0][n-1]. Isso para todos os homens
 menPreferences = [
     [0,1,2],
     [2,1,0],
     [0,2,1]
 ]
 
-# WomenPreferences armazena o valor da preferência que cada mulher tem por cada homen em seu respectivo índice
 womenPreferences = [
     [1,0,2],
     [2,0,1],
-    [0,2,1]
+    [0,1,2]
 ]
 
 n = len(menPreferences)
 
-# print(stableMatching(n, menPreferences, womenPreferences)) # Saida esperada = [1,2,0]
+print(stableMatching(n, menPreferences, womenPreferences)) # Saida esperada = [0,2,1]
